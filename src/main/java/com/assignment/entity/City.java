@@ -28,10 +28,10 @@ public class City {
    private Long humidity;
     private Long sea_level;
     private Long grnd_level;
-
+    private String country;
 
     public City(String name, double temp, double feels_like, double temp_min, double temp_max, double pressure
-   , Long humidity, Long sea_level, Long grnd_level) {
+   , Long humidity, Long sea_level, Long grnd_level , String country) {
 
         this.name = name;
         this.temp = temp;
@@ -42,6 +42,7 @@ public class City {
         this.humidity=humidity;
         this.sea_level=sea_level;
         this.grnd_level=grnd_level;
+        this.country=country;
     }
 
 

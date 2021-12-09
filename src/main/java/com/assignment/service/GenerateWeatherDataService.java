@@ -47,7 +47,6 @@ public class GenerateWeatherDataService {
 
     public void refreshData() {
 
-        http://api.openweathermap.org/data/2.5/find?lat=18.5196&lon=73.8553&cnt=10&appid=ef812db07e5d3989689fd47ffb16a524
         webClient.get().
                 uri("?lat="+lat+"&lon="+lon+"&appid=" + apiId).
                 retrieve().bodyToMono(String.class).subscribe(v -> {
@@ -72,7 +71,13 @@ public class GenerateWeatherDataService {
                                 cityDetails.setHumidity(mainObject.getLong("humidity"));
                                 cityDetails.setSea_level(mainObject.getLong("sea_level"));
                                 cityDetails.setGrnd_level(mainObject.getLong("grnd_level"));
+
                             }
+                            if(obj.getJSONObject("sys")!=null){
+                                JSONObject mainObject = obj.getJSONObject("sys");
+                                cityDetails.setCountry(mainObject.getString("country"));
+                            }
+
 
                             cityRepository.save(cityDetails).subscribe();
                         });
